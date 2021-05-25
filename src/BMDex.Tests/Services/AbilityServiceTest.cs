@@ -42,6 +42,29 @@ namespace BMDex.Tests.Services
         }
 
         [Theory]
+        [InlineData("stench", 1)]
+        [InlineData("stall", 100)]
+        [InlineData("perish-body", 253)]
+        public async Task GetAbilityByValidName(string name, int expected)
+        {
+            var result = await _abilityService.GetAbilityByName(name);
+
+            result.Should().NotBeNull();
+            result.Id.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("burgermonkeys")]
+        public async Task GetAbilityByInvalidName(string name)
+        {
+            var result = await _abilityService.GetAbilityByName(name);
+
+            result.Should().BeNull();
+        }
+
+        [Theory]
         [InlineData(0)]
         [InlineData(-1)]
         [InlineData(int.MaxValue)]

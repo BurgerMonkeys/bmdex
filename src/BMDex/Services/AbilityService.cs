@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using PokeApiNet;
+using BurgerMonkeys.Tools;
 
 namespace BMDex.Services
 {
@@ -9,6 +10,7 @@ namespace BMDex.Services
     {
         Task<List<Ability>> GetAbilities(int limit, int offset);
         Task<Ability> GetAbilityById(int id);
+        Task<Ability> GetAbilityByName(string name);
     }
 
     public class AbilityService : IAbilityService
@@ -36,6 +38,23 @@ namespace BMDex.Services
             try
             {
                 var ability = await _pokeApiClient.GetResourceAsync<Ability>(id);
+                return ability;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public async Task<Ability> GetAbilityByName(string name)
+        {
+            if (name.IsNullOrWhiteSpace())
+                return null;
+
+            try
+            {
+                var ability = await _pokeApiClient.GetResourceAsync<Ability>(name);
                 return ability;
             }
             catch (Exception ex)
