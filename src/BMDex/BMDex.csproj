@@ -20,6 +20,7 @@
     <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="1.1.0" />
     <PackageReference Include="PokeApiNet" Version="3.0.1" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
+    <PackageReference Include="BurgerMonkeys.Tools" Version="1.1.4" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
