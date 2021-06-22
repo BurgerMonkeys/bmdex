@@ -1,26 +1,33 @@
-﻿using Xamarin.Forms;
+﻿using BMDex.Services;
+using BMDex.ViewModels;
+using BMDex.Views;
+using Prism.DryIoc;
+using Prism.Ioc;
+using Xamarin.Forms;
 
 namespace BMDex
 {
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new Views.MainPage());
         }
 
-        protected override void OnStart()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IPokemonService, PokemonService>();
+            containerRegistry.Register<IAbilityService, AbilityService>();
+            RegisterPages(containerRegistry);
         }
 
-        protected override void OnSleep()
+        private void RegisterPages(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<MainPage, MainViewModel>();
         }
-
-        protected override void OnResume()
+        protected override void OnInitialized()
         {
+            
         }
     }
 }

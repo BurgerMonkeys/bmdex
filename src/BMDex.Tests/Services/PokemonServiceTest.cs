@@ -24,7 +24,7 @@ namespace BMDex.Tests.Services
         [InlineData(0, 0, 20)]
         public async void TestGetPokemon(int limit, int offset, int expectedResult)
         {
-            var result = await _pokemonService.GetPokemon(limit, offset);
+            var result = await _pokemonService.GetPokemonListAsync(limit, offset);
             result.Count().Should().Be(expectedResult);
         }
 
@@ -34,7 +34,7 @@ namespace BMDex.Tests.Services
         [InlineData(424, "ambipom")]
         public async void TestGetPokemonByValidId(int id, string expectedResult)
         {
-            var result = await _pokemonService.GetPokemon(id);
+            var result = await _pokemonService.GetPokemonAsync(id);
             result.Name.Should().Be(expectedResult);
         }
 
@@ -44,7 +44,7 @@ namespace BMDex.Tests.Services
         [InlineData(int.MaxValue)]
         public async void TestGetPokemonByInvalidId(int id)
         {
-            var result = await _pokemonService.GetPokemon(id);
+            var result = await _pokemonService.GetPokemonAsync(id);
             result.Should().BeNull();
         }
     }
