@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BMDex.Models;
+using BMDex.Resources;
 //using PokeApiNet;
 using Flurl;
 using Flurl.Http;
@@ -31,11 +33,13 @@ namespace BMDex.Services
 
             var jsonData = await request.GetStringAsync();
 
-            var pokemonData = JsonConvert.DeserializeObject<IEnumerable<Pokemon>>(jsonData);
+            var pokemonData = JsonConvert.DeserializeObject<ResourceResponse<Pokemon>>(jsonData);
+
+            var names = pokemonData.Results.Select(t => t.Name);
             // var content = await _pokeApiClient.GetNamedResourcePageAsync<Pokemon>(limit, offset);
             // var pokemonData = await _pokeApiClient.GetResourceAsync(content.Results);
             //
-            return pokemonData;
+            return null;//pokemonData;
         }
 
         public async Task<Pokemon> GetPokemonAsync(int id)
