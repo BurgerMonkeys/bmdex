@@ -16,6 +16,7 @@ namespace BMDex
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IResourceService, ResourceService>();
             containerRegistry.Register<IPokemonService, PokemonService>();
             containerRegistry.Register<IAbilityService, AbilityService>();
             RegisterPages(containerRegistry);
