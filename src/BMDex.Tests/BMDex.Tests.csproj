@@ -19,6 +19,8 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="FakeItEasy" Version="7.1.0" />
+    <PackageReference Include="AutoBogus" Version="2.13.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,5 +28,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="FakeItEasy" />
+    <None Remove="AutoBogus" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,9 @@
 ﻿using System.Linq;
+using AutoBogus;
+using BMDex.Models;
+using BMDex.Resources;
 using BMDex.Services;
+using FakeItEasy;
 using FluentAssertions;
 using Xunit;
 
@@ -12,7 +16,7 @@ namespace BMDex.Tests.Services
 
         public PokemonServiceTest()
         {
-            _resourceService = new ResourceService();
+            _resourceService = A.Fake<IResourceService>();
             _pokemonService = new PokemonService(_resourceService);
         }
 
@@ -23,6 +27,15 @@ namespace BMDex.Tests.Services
         [InlineData(0, 0, 20)]
         public async void TestGetPokemon(int limit, int offset, int expectedResult)
         {
+            var fakeURLResult = AutoFaker.Generate<string>(expectedResult);
+            var fakePokemonResult = AutoFaker.Generate<Pokemon>(expectedResult);
+
+            A.CallTo(() => _resourceService.GetUrlListAsync(Endpoints.Pokemon, limit, offset))
+                .Returns(fakeURLResult);
+
+            A.CallTo(() => _resourceService.GetDetailListAsync<Pokemon>(fakeURLResult))
+                .Returns(fakePokemonResult);
+
             var result = await _pokemonService.GetPokemonListAsync(limit, offset);
             result.Count().Should().Be(expectedResult);
         }

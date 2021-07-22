@@ -1,11 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using BMDex.Models;
 using BMDex.Resources;
-using Flurl;
-using Flurl.Http;
-using Newtonsoft.Json;
 
 namespace BMDex.Services
 {

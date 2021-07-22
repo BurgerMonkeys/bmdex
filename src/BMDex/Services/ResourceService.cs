@@ -17,7 +17,7 @@ namespace BMDex.Services
 
     public class ResourceService: IResourceService
     {
-        public async Task<IEnumerable<string>> GetUrlListAsync(string endpoint, int limit, int offset)
+        public virtual async Task<IEnumerable<string>> GetUrlListAsync(string endpoint, int limit, int offset)
         {
             var request = await Constants.BaseAddress
                 .AppendPathSegment(endpoint)
