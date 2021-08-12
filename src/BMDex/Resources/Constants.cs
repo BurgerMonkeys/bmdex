@@ -8,5 +8,6 @@ namespace BMDex.Resources
     public static class Endpoints
     {
         public const string Pokemon = "pokemon";
+        public const string Ability = "ability";
     }
 }
