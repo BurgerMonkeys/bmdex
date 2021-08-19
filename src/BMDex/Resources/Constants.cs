@@ -9,5 +9,6 @@ namespace BMDex.Resources
     {
         public const string Pokemon = "pokemon";
         public const string Ability = "ability";
+        public const string Type = "type";
     }
 }
