@@ -7,7 +7,7 @@ namespace BMDex.Services
 {
     public interface IPokemonService
     {
-        public Task<IEnumerable<Pokemon>> GetPokemonListAsync(int limit = 20, int offset = 0);
+        Task<IEnumerable<Pokemon>> GetPokemonListAsync(int limit = 20, int offset = 0);
     }
 
     public class PokemonService : IPokemonService
