@@ -14,7 +14,6 @@ namespace BMDex.Views
 
         public MainPage()
         {
-            BindingContext = new MainViewModel();
             Content = Build();
         }
 

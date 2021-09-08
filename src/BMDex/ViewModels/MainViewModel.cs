@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using BMDex.Models;
 using BMDex.Services;
-using PokeApiNet;
 using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace BMDex.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        readonly PokemonService _pokemonService;
+        readonly IPokemonService _pokemonService;
         public ObservableRangeCollection<Pokemon> Pokemon { get; set; }
 
-        public MainViewModel()
+        public MainViewModel(IPokemonService pokemonService)
         {
-            _pokemonService = new PokemonService();
+            _pokemonService = pokemonService;
             Pokemon = new ObservableRangeCollection<Pokemon>();
         }
 
         public override async Task InitializeAsync()
         {
-            var pokemon = await _pokemonService.GetPokemon();
+            var pokemon = await _pokemonService.GetPokemonListAsync();
 
             Pokemon.AddRange(pokemon);
         }

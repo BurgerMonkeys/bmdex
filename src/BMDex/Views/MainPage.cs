@@ -44,7 +44,7 @@ namespace BMDex.Views
             {
                 Content = new Label
                 {
-                    Text = "Welcome to BMDex!",
+                    Text = "This is BMDex!",
                     TextColor = Color.White,
                     HorizontalTextAlignment = TextAlignment.Center
                 }.FontSize(Device.GetNamedSize(NamedSize.Title, typeof(Label)))
