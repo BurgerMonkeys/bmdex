@@ -1,18 +1,18 @@
 ﻿using BMDex.Services;
 using BMDex.ViewModels;
 using BMDex.Views;
+using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Xamarin.Forms;
 
 namespace BMDex
 {
-    public partial class App : PrismApplication
+    public partial class App
     {
-        public App()
-        {
-            InitializeComponent();
-        }
+        public App() : this(null) { }
+
+        public App(IPlatformInitializer initializer) : base(initializer) { }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
@@ -25,10 +25,13 @@ namespace BMDex
         private void RegisterPages(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>();
+            //containerRegistry.Register<PokemonListPage, PokemonListViewModel>();
         }
-        protected override void OnInitialized()
+
+        protected override async void OnInitialized()
         {
-            
+            InitializeComponent();
+            await NavigationService.NavigateAsync(nameof(MainPage));
         }
     }
 }

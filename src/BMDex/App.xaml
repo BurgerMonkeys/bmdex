@@ -3,7 +3,4 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              x:Class="BMDex.App">
-    <Application.Resources>
-
-    </Application.Resources>
 </prism:PrismApplication>

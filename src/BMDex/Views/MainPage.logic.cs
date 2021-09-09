@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BMDex.Abstractions;
-using BMDex.Services;
-using BMDex.ViewModels;
-using PokeApiNet;
+using Xamarin.CommunityToolkit.UI.Views;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace BMDex.Views
 {
@@ -14,7 +10,25 @@ namespace BMDex.Views
 
         public MainPage()
         {
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             Content = Build();
+        }
+
+        private async void TabView_SelectionChanged(object sender, TabSelectionChangedEventArgs e)
+        {
+            if (sender is TabView tabView)
+            {
+                var tabViewItem = tabView.TabItems[e.NewPosition];
+                await InitializeAsync(tabViewItem).ConfigureAwait(false);
+            }
+        }
+
+        private async Task InitializeAsync(TabViewItem tabViewItem)
+        {
+            if (tabViewItem.Content.BindingContext is IInitialize viewModel)
+            {
+                await viewModel.InitializeAsync().ConfigureAwait(false);
+            }
         }
 
         protected override async void OnAppearing()
@@ -25,8 +39,11 @@ namespace BMDex.Views
 
         private async Task OnAppearingAsync()
         {
-            if (BindingContext is IInitialize viewModel)
-                await viewModel.InitializeAsync();
+            if (Content is TabView tabView)
+            {
+                var tabViewItem = tabView.TabItems[0];
+                await InitializeAsync(tabViewItem).ConfigureAwait(false);
+            }
         }
     }
 }
