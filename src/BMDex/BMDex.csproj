@@ -25,11 +25,15 @@
     <PackageReference Include="PokeApiNet" Version="3.0.1" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
     <PackageReference Include="BurgerMonkeys.Tools" Version="1.1.4" />
+    <PackageReference Include="Prism.Forms.Regions" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="Services\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Abstractions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Prism.Forms.Regions" />
   </ItemGroup>
 </Project>

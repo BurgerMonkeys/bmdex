@@ -1,5 +1,6 @@
 ﻿using System;
 using BMDex.ViewModels;
+using Prism.Regions;
 
 namespace BMDex.Views
 {
@@ -8,6 +9,7 @@ namespace BMDex.Views
         public PokemonListPage()
         {
             Content = Build();
+
             //BindingContext = new PokemonListViewModel(Prism.Resolve());
         }
     }

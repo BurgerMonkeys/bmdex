@@ -8,7 +8,7 @@ namespace BMDex.Views
     {
         View Build() => new StackLayout
         {
-            BackgroundColor = Color.Violet
+            BackgroundColor = Color.Green
         };
 
         private CollectionView GetList()

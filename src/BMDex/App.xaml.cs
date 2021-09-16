@@ -24,8 +24,9 @@ namespace BMDex
 
         private void RegisterPages(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterRegionServices();
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>();
-            //containerRegistry.Register<PokemonListPage, PokemonListViewModel>();
+            containerRegistry.RegisterForRegionNavigation<PokemonListPage, PokemonListViewModel>();
         }
 
         protected override async void OnInitialized()

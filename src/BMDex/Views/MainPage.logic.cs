@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using BMDex.Abstractions;
+using Prism.Regions;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
@@ -7,9 +8,11 @@ namespace BMDex.Views
 {
     public partial class MainPage
     {
+        private IRegionManager _regionManager { get; }
 
-        public MainPage()
+        public MainPage(IRegionManager regionManager)
         {
+            _regionManager = regionManager;
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             Content = Build();
         }
