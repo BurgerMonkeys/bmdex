@@ -1,6 +1,5 @@
-﻿using System;
+﻿using BMDex.Services;
 using BMDex.ViewModels;
-using Prism.Regions;
 
 namespace BMDex.Views
 {
@@ -10,7 +9,7 @@ namespace BMDex.Views
         {
             Content = Build();
 
-            //BindingContext = new PokemonListViewModel(Prism.Resolve());
+            BindingContext = new PokemonListViewModel(new PokemonService(new ResourceService()));
         }
     }
 }

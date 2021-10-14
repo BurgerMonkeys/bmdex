@@ -1,23 +1,26 @@
 ﻿using System.Threading.Tasks;
-using BMDex.Views;
-using Prism.Navigation;
-using Prism.Regions;
-using Prism.Regions.Navigation;
+using BMDex.Models;
+using BMDex.Services;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace BMDex.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private IRegionManager _regionManager { get; }
+        readonly IPokemonService _pokemonService;
+        public ObservableRangeCollection<Pokemon> Pokemon { get; set; }
 
-        public MainViewModel(IRegionManager regionManager)
+        public MainViewModel(IPokemonService pokemonService)
         {
-            _regionManager = regionManager;
+            _pokemonService = pokemonService;
+            Pokemon = new ObservableRangeCollection<Pokemon>();
         }
 
-        public void Initialize(INavigationParameters parameters)
+        public override async Task InitializeAsync()
         {
-            _regionManager.RequestNavigate("DexTab", nameof(PokemonListPage));
+            var pokemon = await _pokemonService.GetPokemonListAsync();
+
+            Pokemon.AddRange(pokemon);
         }
     }
 }

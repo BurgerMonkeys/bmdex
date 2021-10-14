@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.CommunityToolkit.Markup;
+﻿using Xamarin.CommunityToolkit.Markup;
 using Xamarin.Forms;
 
 namespace BMDex.Views

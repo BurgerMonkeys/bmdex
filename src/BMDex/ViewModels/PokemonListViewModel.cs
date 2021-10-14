@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BMDex.Models;
 using BMDex.Services;
 using Xamarin.CommunityToolkit.ObjectModel;

@@ -1,9 +1,6 @@
-﻿using System;
-using Xamarin.CommunityToolkit.Markup;
+﻿using Xamarin.CommunityToolkit.Markup;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
-using Prism.Regions;
-using Region = Prism.Regions.Region;
 
 namespace BMDex.Views
 {
@@ -29,7 +26,7 @@ namespace BMDex.Views
                 Text = "Dex",
                 TextColor = Color.FromHex("#999999"),
                 TextColorSelected = Color.FromHex("#FF0000"),
-                Content = GetRegion()
+                Content = GetList()
             });
 
             tabView.TabItems.Add(new TabViewItem
@@ -46,21 +43,6 @@ namespace BMDex.Views
             tabView.SelectionChanged += TabView_SelectionChanged;
 
             return tabView;
-        }
-
-        private ContentView GetRegion()
-        {
-            var view = new ContentView();
-            //var manager = new RegionManager();
-            //var region = new Region();
-
-            view.Invoke(p =>
-                _regionManager.RegisterViewWithRegion<PokemonListPage>("DexTab")
-            );
-
-            //region.Name = "DexTab";
-
-            return view;
         }
 
         private CollectionView GetList()

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using BMDex.Abstractions;
-using Prism.Regions;
+using BMDex.Services;
+using BMDex.ViewModels;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
@@ -8,11 +9,9 @@ namespace BMDex.Views
 {
     public partial class MainPage
     {
-        private IRegionManager _regionManager { get; }
-
-        public MainPage(IRegionManager regionManager)
+        public MainPage()
         {
-            _regionManager = regionManager;
+            BindingContext = new MainViewModel(new PokemonService(new ResourceService()));
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             Content = Build();
         }
