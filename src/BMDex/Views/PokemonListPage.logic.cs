@@ -10,6 +10,7 @@ namespace BMDex.Views
             Content = Build();
 
             BindingContext = new PokemonListViewModel(new PokemonService(new ResourceService()));
+
         }
     }
 }

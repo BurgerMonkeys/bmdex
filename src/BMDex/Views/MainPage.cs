@@ -6,7 +6,9 @@ namespace BMDex.Views
 {
     public partial class MainPage : ContentPage
     {
-        View Build() => new Grid
+		CollectionView collectionView;
+
+		View Build() => new Grid
         {
             Children =
             {
@@ -47,9 +49,10 @@ namespace BMDex.Views
 
         private CollectionView GetList()
         {
-            var collectionView = new CollectionView
+            collectionView = new CollectionView
             {
-                ItemTemplate = GetDataTemplate()
+                ItemTemplate = GetDataTemplate(),
+                SelectionMode = SelectionMode.Single
             };
 
             collectionView.Bind(ItemsView.ItemsSourceProperty, "Pokemon");

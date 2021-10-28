@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace BMDex.Views
 {
-    public partial class PokemonListPage : ContentView
+    public partial class PokemonListPage : ContentPage
     {
         View Build() => new StackLayout
         {

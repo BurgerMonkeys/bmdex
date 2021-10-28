@@ -3,6 +3,7 @@ using BMDex.Abstractions;
 using BMDex.Services;
 using BMDex.ViewModels;
 using Xamarin.CommunityToolkit.UI.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace BMDex.Views
@@ -14,6 +15,15 @@ namespace BMDex.Views
             BindingContext = new MainViewModel(new PokemonService(new ResourceService()));
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
             Content = Build();
+
+            collectionView.SelectionChanged += (s, e) =>
+            {
+                if (e.CurrentSelection is null)
+                    return;
+
+                AppShell.Current.GoToAsync("pokemonListPage");
+            };
+
         }
 
         private async void TabView_SelectionChanged(object sender, TabSelectionChangedEventArgs e)
