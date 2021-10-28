@@ -3,17 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <LangVersion>9.0</LangVersion>
-  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Flurl" Version="3.0.2" />
     <PackageReference Include="Flurl.Http" Version="3.2.0" />
@@ -23,14 +20,5 @@
     <PackageReference Include="PokeApiNet" Version="3.0.1" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
     <PackageReference Include="BurgerMonkeys.Tools" Version="1.1.4" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Abstractions\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Prism.Forms.Regions" />
   </ItemGroup>
 </Project>
