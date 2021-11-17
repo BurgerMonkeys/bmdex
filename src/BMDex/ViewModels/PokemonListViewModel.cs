@@ -5,12 +5,12 @@ using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace BMDex.ViewModels
 {
-    public class MainViewModel : BaseViewModel
+    public class PokemonListViewModel : BaseViewModel
     {
         readonly IPokemonService _pokemonService;
         public ObservableRangeCollection<Pokemon> Pokemon { get; set; }
 
-        public MainViewModel(IPokemonService pokemonService)
+        public PokemonListViewModel(IPokemonService pokemonService)
         {
             _pokemonService = pokemonService;
             Pokemon = new ObservableRangeCollection<Pokemon>();

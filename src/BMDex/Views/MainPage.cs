@@ -1,25 +1,58 @@
-﻿using System;
-using Xamarin.CommunityToolkit.Markup;
+﻿using Xamarin.CommunityToolkit.Markup;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 
 namespace BMDex.Views
 {
     public partial class MainPage : ContentPage
     {
-        View Build() => new StackLayout
+		CollectionView collectionView;
+
+		View Build() => new Grid
         {
             Children =
             {
-                GetHeader(),
-                GetList()
+                GetTabView()
             }
         };
 
+        private TabView GetTabView()
+        {
+            var tabView = new TabView
+            {
+                TabStripPlacement = TabStripPlacement.Bottom
+            };
+
+            tabView.TabItems.Add(new TabViewItem
+            {
+                Text = "Dex",
+                TextColor = Color.FromHex("#999999"),
+                TextColorSelected = Color.FromHex("#FF0000"),
+                Content = GetList()
+            });
+
+            tabView.TabItems.Add(new TabViewItem
+            {
+                Text = "Treinador",
+                TextColor = Color.FromHex("#999999"),
+                TextColorSelected = Color.FromHex("#FF0000"),
+                Content = new StackLayout
+                {
+                    BackgroundColor = Color.Red
+                }
+            });
+
+            tabView.SelectionChanged += TabView_SelectionChanged;
+
+            return tabView;
+        }
+
         private CollectionView GetList()
         {
-            var collectionView = new CollectionView
+            collectionView = new CollectionView
             {
-                ItemTemplate = GetDataTemplate()
+                ItemTemplate = GetDataTemplate(),
+                SelectionMode = SelectionMode.Single
             };
 
             collectionView.Bind(ItemsView.ItemsSourceProperty, "Pokemon");
@@ -37,27 +70,5 @@ namespace BMDex.Views
 
             return stack;
         });
-        
-        Frame GetHeader()
-        {
-            return new BlueFrame
-            {
-                Content = new Label
-                {
-                    Text = "This is BMDex!",
-                    TextColor = Color.White,
-                    HorizontalTextAlignment = TextAlignment.Center
-                }.FontSize(Device.GetNamedSize(NamedSize.Title, typeof(Label)))
-            };
-        }
-    }
-
-    public class BlueFrame : Frame
-    {
-        public BlueFrame()
-        {
-            BackgroundColor = Color.FromHex("#2196F3");
-            Padding = new Thickness(24);
-        }
     }
 }
