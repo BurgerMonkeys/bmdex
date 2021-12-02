@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BMDex.Extensions;
+using BMDex.Resources;
 using Newtonsoft.Json;
 
 namespace BMDex.Models
@@ -12,9 +13,9 @@ namespace BMDex.Models
         [JsonProperty("types")]
         public IEnumerable<TypeSlot> Types { get; set; }
 
-        public string FormattedName
-        {
-            get => Name.FirstCharToUpper();
-        }
+        public string FormattedName => Name.FirstCharToUpper();
+        public string FormattedDexNumber => $"#{Id}";
+
+        public string ImageURL => string.Format(Constants.ImageBaseUrl, Id);
     }
 }

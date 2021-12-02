@@ -1,3 +1,4 @@
+using BMDex.Extensions;
 using Newtonsoft.Json;
 
 namespace BMDex.Models
@@ -9,5 +10,7 @@ namespace BMDex.Models
 
         [JsonProperty("url")]
         public string Url { get; set; }
+
+        public string FormattedName => Name.FirstCharToUpper();
     }
 }
